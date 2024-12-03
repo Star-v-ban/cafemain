@@ -3,15 +3,18 @@ import vue from '@vitejs/plugin-vue'
 import vuetify from 'vite-plugin-vuetify'
 
 export default defineConfig({
+
+  css: {
+    preprocessorOptions: {
+      sass: {
+        api: 'modern',
+      },
+    },
+  },
   
   plugins: [
     vue(),
     vuetify({
-      template: {
-        compilerOptions: {
-          isCustomElement: (tag) => tag.startsWith('v-'),
-        },
-      },
       styles: {
         configFile: 'src/style.scss',
       },

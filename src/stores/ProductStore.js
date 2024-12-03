@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 
 export const useProductStore = defineStore( 'products',{
+
 state: () => ({
     products: []
 }),
@@ -13,6 +14,11 @@ actions: {
     },
     getProduct(id) {
         return this.products.find(product => product.id === id);
-    }
+    },
+    nextId() {
+    return productStore.products.length > 0 
+      ? Math.max(...productStore.products.map(product => product.id)) + 1
+      : 1;
+  }
 }
 });

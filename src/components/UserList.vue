@@ -2,10 +2,10 @@
 import { ref } from "vue";
 import { useRouter } from 'vue-router';
 import { usePeopleStore } from "/src/stores/PeopleStore";
+import { v4 as uuidv4 } from 'uuid';
 
 const router = useRouter();
 const peopleStore = usePeopleStore();
-let productIdCounter = 0;
 const firstname = ref("");
 const valid = ref(true);
 
@@ -13,7 +13,7 @@ const addUser = () => {
   if (valid.value) {
     if (firstname.value.length > 0) {
       const newPerson = { 
-        id: productIdCounter++, 
+        id: uuidv4(), 
         name: firstname.value, 
         selected: false 
       };
