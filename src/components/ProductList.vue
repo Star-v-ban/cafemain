@@ -3,21 +3,23 @@ import { ref } from "vue";
 import { useRouter } from 'vue-router';
 import { usePeopleStore } from '/src/stores/PeopleStore';
 import { useProductStore } from '/src/stores/ProductStore';
+import { v4 as uuidv4 } from 'uuid';
+
 
 const productStore = useProductStore();
 const peopleStore = usePeopleStore();
+const prodId = uuidv4();
 const router = useRouter();
 const foodname = ref('');
 const foodcost = ref('');
 const payerPerson = ref(null);
-let productIdCounter = 0;
 const valid = ref(true);
 
 
 const addProduct = () => {
     if (valid.value && foodname.value.length > 0 && payerPerson.value) {
         const newProduct = {
-            id: productIdCounter++,
+            id: prodId,
             foodname: foodname.value,
             foodcost: parseFloat(foodcost.value),
             payerPerson: payerPerson.value,

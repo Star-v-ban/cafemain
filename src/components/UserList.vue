@@ -8,12 +8,13 @@ const router = useRouter();
 const peopleStore = usePeopleStore();
 const firstname = ref("");
 const valid = ref(true);
+const userId = uuidv4();
 
 const addUser = () => {
   if (valid.value) {
     if (firstname.value.length > 0) {
       const newPerson = { 
-        id: uuidv4(), 
+        id: userId, 
         name: firstname.value, 
         selected: false 
       };
